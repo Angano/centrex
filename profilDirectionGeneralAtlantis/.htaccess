@@ -1,0 +1,8 @@
+# Activation du module de ré-écriture d'url de Apache
+RewriteEngine on
+
+# filtration des fichiers demandés
+# les fichiers dont l'extension est présente dans la liste ci-dessous seront fournis
+RewriteRule !\.(js|ico|webp|gif|jpg|png|css)$ index.php
+
+# sinon, on redirige chaque requête sur le scrip index.php

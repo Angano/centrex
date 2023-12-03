@@ -1,0 +1,42 @@
+                                                 Centrex ou BFlex
+
+
+
+Centrex est une technologie de téléphonie en VoIP. 
+Que cela soit pour des standards ou des terminaux finals. 
+Pour nous, il s'agit de standards.
+
+
+Technologies : Bootstrap / PHP / MySQL
+Base de données : mdpi8535_stock
+Tables : centrex_data ; llx_user ; llx_soc
+
+
+
+Nous avons plusieurs types d'utilisateurs avec deux vues différentes. 
+Il va t'être fourni la "Nav" des dites vues. 
+Les vues peuvent être dans un seul fichier, celui ci devra être protégé par une session, et si les profil des users ne correspondent 
+pas ils devront être redirigé vers une page ./back/index.php et un kill de session.
+Les vérifications de redirection se feront par la table llx_user colonne job (j'effectue toujours mes tests sur les dernières données rowid 66 à 72)
+    superadmin
+    dirigeant
+    rr 
+    rs_itinerant 
+
+Vue des dirigeants, rr ou rs_itinerant (même vue pour les 3):
+
+    Peuvent voire tous les ID et MdP de toutes les sociétés; mais ils peuvent aussi faire des tris par sociétés. 
+    Chaque ligne du tableau avant tri devront alterner des background différents. 
+    A la fin de chacune de ces lignes il doit y avoir un bouton qui pointe vers le lien : 
+        https://ucportal.hosted-pbx.bouyguestelecom.com/ssos/index.php
+
+    Attention : ces profils ne peuvent faire que des "SELECT" en SQL. Afin de protéger l'intégrité des données. 
+
+Vues des superadmin : 
+
+    Les administrateurs ont la même vue que les autres profils users. 
+    Ils peuvent en plus faire un Update des ID et MdP, ... de l'ensemble des données de la table sauf de fk_llx_soc qui reste en lecture seulement.     
+    Par contre, ils peuvent désactiver les données (status). 
+    Ils ont donc une vue supplémentaire pour voire les données désactivées et ils pourront sur cette page les réactiver. 
+    
+    Attention :  quand une page est désactivé, elle ne doit plus apparaitre aux autres users. Surtout pas de DELETE. 
